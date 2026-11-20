@@ -1,41 +1,41 @@
 # VelociDrone Racing Lab
 
-VelociDrone에서 드론을 자동 조종하고, 유효 완주를 확인하면서 기록을 줄여가는 개인 프로젝트입니다.
+A personal project to fly racing drones autonomously in VelociDrone, verify valid race completions, and progressively reduce race times.
 
-가상 조종기, 캘리브레이션, 비행 기록, 상태 피드백 조종, 실시간 대시보드를 하나의 작업 흐름으로 연결했습니다. 이 저장소에는 시연 영상과 구현 개요만 담았습니다. 실행 가능한 조종 프로그램과 모델은 배포하지 않습니다.
+The project brings together a virtual controller, calibration, flight logging, state-feedback control, and a live dashboard. This repository contains a demonstration video and a high-level implementation overview. The executable controller and models are not distributed.
 
-## 시연 영상
+## Demonstration
 
-[![자율 비행 시연](preview.jpg)](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/tag/demo-67.873)
+[![Autonomous flight demonstration](preview.jpg)](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/tag/demo-67.873)
 
-**[67.873초 완주 영상 보기·다운로드](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/download/demo-67.873/demo-67.873s-sticks.mp4)**
+**[Watch or download the 67.873-second race](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/download/demo-67.873/demo-67.873s-sticks.mp4)**
 
-실제 시뮬레이터 주행과 동시 기록한 대시보드를 사용했습니다. 재생 속도를 바꾸거나 비행 움직임을 생성하지 않았습니다. 스틱 움직임과 경기 상태는 보이며, 상세 튜닝 정보만 가렸습니다. 마지막 결과 화면은 해당 경기의 공식 기록 화면입니다. 결승 뒤 관성 이동은 경기 구간과 구분합니다.
+The video shows actual simulator footage alongside dashboard snapshots recorded during the flight. Playback speed is unchanged, and no flight motion was generated. Stick movements and race status remain visible; only detailed tuning information is masked. The final still shows the official result of this race. Movement after the finish is separate from the timed race.
 
-## 확인한 결과
+## Verified results
 
-| 항목 | 결과 |
+| Item | Result |
 |---|---|
-| 코스 | 2023 AU NATS 5inch |
-| 경기 | 3랩 |
-| 공식 총 기록 | **67.873초** |
-| 홀샷 | 2.584초 |
-| 각 랩 | 22.035 / 21.627 / 21.627초 |
-| 비교 기준 | 이전 검증 기록 141.063초 → 67.873초 |
+| Course | 2023 AU NATS 5inch |
+| Race | 3 laps |
+| Official total time | **67.873 s** |
+| Holeshot | 2.584 s |
+| Individual laps | 22.035 / 21.627 / 21.627 s |
+| Progress | Earlier verified result: 141.063 s → 67.873 s |
 
-게임의 공식 결과, 순서 있는 게이트 통과, 충돌·손상 표시, 원본 상태 로그와 주요 장면을 함께 확인했습니다. 모든 접촉을 검출한다는 보장은 없으며, 설정별 반복 성공률과 다른 코스에서의 성능은 아직 검증하지 않았습니다. 1등 기록 달성이 최종 목표이고, 이 영상은 그 과정의 결과입니다.
+Verification combined the official game result, ordered gate crossings, crash and damage indicators, original state logs, and selected frames. Detection of every contact is not guaranteed. Repeated success rates for each configuration and performance on other courses have not yet been established. The goal is the fastest leaderboard time; this demonstration is a step toward that goal.
 
-## 구현 방식
+## How it works
 
-1. **기록:** 참고 비행과 시뮬레이터 상태를 저장하고 시간 기준을 맞춥니다.
-2. **조종:** 목표 주행 경로와 현재 위치·속도·자세의 차이를 바탕으로 가상 조종기 입력을 계산합니다.
-3. **검증:** 게이트 진행과 경기 상태를 감시합니다. 충돌하면 해당 시도를 실패 처리하고 출발점에서 다시 시작합니다.
-4. **개선:** 완주 여부와 실패 구간을 분석해 주행 경로와 구간별 속도를 조정합니다.
+1. **Record:** Capture reference flights and simulator state, then align their timestamps.
+2. **Control:** Calculate virtual controller inputs from the difference between the target flight path and the current position, velocity, and attitude.
+3. **Verify:** Monitor gate progression and race status. A detected collision marks the attempt as a failure and triggers a restart from the starting position.
+4. **Improve:** Analyze successful runs and failure segments to refine the flight path and speed through each section.
 
-머신러닝 모델의 학습·평가도 실험했지만, **이 영상의 완주는 경로와 상태 피드백을 사용하는 조종기 결과**입니다. 영상만 입력하는 신경망의 완주나 다른 맵에 대한 범용 학습 성공을 주장하지 않습니다. 실제 비행체에는 적용하지 않았습니다.
+Machine learning models have also been trained and evaluated experimentally. However, **the run shown here was completed by a controller using a reference path and state feedback**. It does not demonstrate a vision-only neural controller or generalization to unseen maps. The system has not been applied to a physical aircraft.
 
-## 공개 범위
+## Repository scope
 
-이 저장소는 포트폴리오용입니다. 소스 코드, 모델 가중치, 원본 스틱·상태 데이터, 구체적인 제어식·파라미터, 실행 파일과 재현 절차는 포함하지 않습니다. 별도의 작업 저장소와도 분리되어 있습니다.
+This is a portfolio repository. It does not include source code, model weights, raw stick or state datasets, detailed control equations or parameters, executables, or reproduction instructions. It is separate from the private development repository.
 
-자료의 이용 범위는 [NOTICE.md](NOTICE.md)를 확인해 주세요. VelociDrone 및 게임 내 자산의 권리는 각 권리자에게 있습니다. 본 프로젝트는 비공식 개인 프로젝트입니다.
+See [NOTICE.md](NOTICE.md) for usage terms. Rights to VelociDrone and in-game assets belong to their respective owners. This is an unofficial personal project.
