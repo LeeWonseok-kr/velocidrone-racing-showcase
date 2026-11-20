@@ -8,9 +8,9 @@ VelociDrone에서 드론을 자동 조종하고, 유효 완주를 확인하면�
 
 [![자율 비행 시연](preview.jpg)](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/tag/demo-67.873)
 
-**[67.873초 완주 영상 보기·다운로드](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/download/demo-67.873/demo-67.873s.mp4)**
+**[67.873초 완주 영상 보기·다운로드](https://github.com/LeeWonseok-kr/velocidrone-racing-showcase/releases/download/demo-67.873/demo-67.873s-sticks.mp4)**
 
-실제 시뮬레이터 주행과 동시 기록한 대시보드를 사용했습니다. 재생 속도를 바꾸거나 비행 움직임을 생성하지 않았습니다. 공개 검토용 영상에서는 스틱 출력값과 상세 튜닝 정보를 가렸습니다. 마지막 결과 화면은 해당 경기의 공식 기록 화면입니다. 결승 뒤 관성 이동은 경기 구간과 구분합니다.
+실제 시뮬레이터 주행과 동시 기록한 대시보드를 사용했습니다. 재생 속도를 바꾸거나 비행 움직임을 생성하지 않았습니다. 스틱 움직임과 경기 상태는 보이며, 상세 튜닝 정보만 가렸습니다. 마지막 결과 화면은 해당 경기의 공식 기록 화면입니다. 결승 뒤 관성 이동은 경기 구간과 구분합니다.
 
 ## 확인한 결과
 
